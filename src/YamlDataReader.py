@@ -37,8 +37,11 @@ class YamlDataReader(DataReader, ABC):
                 if isinstance(fio, str):
                     self.students[fio] = []
                     for subject in node[fio]:
-                        if not isinstance(subject, str) and not isinstance(node[fio][subject], int):
+                        if not isinstance(subject, str) and not \
+                                isinstance(node[fio][subject], int):
                             raise Exception("Invalid data file format")
-                        self.students[fio].append((subject, int(node[fio][subject])))
+                        self.students[fio].append(
+                            (subject, int(node[fio][subject]))
+                        )
                 else:
                     raise Exception("Invalid data file format")
