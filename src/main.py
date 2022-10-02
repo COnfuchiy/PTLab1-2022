@@ -3,7 +3,8 @@ import argparse
 import sys
 
 from CalcRating import CalcRating
-from TextDataReader import TextDataReader
+from QuantileRating import QuantileRating
+from YamlDataReader import YamlDataReader
 
 
 def get_path_from_arguments(args) -> str:
@@ -17,12 +18,15 @@ def get_path_from_arguments(args) -> str:
 def main():
     path = get_path_from_arguments(sys.argv[1:])
 
-    reader = TextDataReader()
+    reader = YamlDataReader()
     students = reader.read(path)
     print("Students: ", students)
 
     rating = CalcRating(students).calc()
     print("Rating: ", rating)
+
+    second_quantile_rating = QuantileRating(rating, 0.5).get_students_by_quantile(ge=True)
+    print("Second quantile students rating: ", second_quantile_rating)
 
 
 if __name__ == "__main__":
