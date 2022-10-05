@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from Types import DataType,RatingType
+from Types import DataType, RatingType
 
 
 class CalcRating:
