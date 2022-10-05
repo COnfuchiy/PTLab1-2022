@@ -21,19 +21,11 @@ class QuantileRating:
         self.quantile_calculated_value = numpy.quantile(rating_list,
                                                         self.quantile_value)
 
-    def get_students_by_quantile(self, ge: bool = False,
-                                 le: bool = False) -> RatingType:
-        """
-        :param ge: bool - greater than or equal to the quantile value
-        :param le: bool - less than or equal to the quantile value
-        :rtype: RatingType
-        """
+    def get_students_by_quantile(self) -> RatingType:
         output_students: RatingType = {}
 
         for student in self.rating:
-            if ge and self.rating[student] >= self.quantile_calculated_value \
-                    or le and self.rating[student] \
-                    <= self.quantile_calculated_value:
+            if self.rating[student] <= self.quantile_calculated_value:
                 output_students[student] = self.rating[student]
 
         return output_students
