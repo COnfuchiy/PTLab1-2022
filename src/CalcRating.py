@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from Types import DataType
-
-RatingType = dict[str, float]
+from Types import DataType, RatingType
 
 
 class CalcRating:
