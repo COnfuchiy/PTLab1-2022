@@ -6,8 +6,6 @@ from Types import RatingType
 class QuantileRating:
 
     def __init__(self, rating: RatingType, quantile: float) -> None:
-        self.quantile_value: float = 0
-
         # quantile must be between 0 and 1 inclusive.
         # see
         # https://numpy.org/doc/stable/reference/generated/numpy.quantile.html
