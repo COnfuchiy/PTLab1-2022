@@ -53,14 +53,8 @@ class TestQuantileRating:
         for quantile in input_data[1]:
             quantile_rating = QuantileRating(input_data[0], quantile)
 
-            ge_quantile_students = \
-                quantile_rating.get_students_by_quantile(ge=True)
-            for student in ge_quantile_students:
-                assert ge_quantile_students[student] \
-                       >= quantile_rating.quantile_calculated_value
-
-            le_quantile_students = \
-                quantile_rating.get_students_by_quantile(le=True)
-            for student in le_quantile_students:
-                assert le_quantile_students[student] \
+            quantile_students = \
+                quantile_rating.get_students_by_quantile()
+            for student in quantile_students:
+                assert quantile_students[student] \
                        <= quantile_rating.quantile_calculated_value
