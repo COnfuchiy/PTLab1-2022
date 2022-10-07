@@ -5,27 +5,26 @@ from Types import RatingType
 
 class QuantileRating:
 
-    def __init__(self, rating: RatingType, quantile: float) -> None:
-        # quantile must be between 0 and 1 inclusive.
-        # see
-        # https://numpy.org/doc/stable/reference/generated/numpy.quantile.html
-        if not 0 <= quantile <= 1:
-            raise Exception("Quantile must be between 0 and 1 inclusive")
-        self.quantile_value = quantile
+    def __init__(self, rating: RatingType) -> None:
         self.rating = rating
-        self.quantile_calculated_value: float = 0
-        self.calc_quantile()
+        self.quantile_calculated_values: list = []
+        self.calc_quantiles()
 
-    def calc_quantile(self):
+    def calc_quantiles(self):
         rating_list = list(self.rating.values())
-        self.quantile_calculated_value = numpy.quantile(rating_list,
-                                                        self.quantile_value)
+        self.quantile_calculated_values.append(
+            numpy.quantile(rating_list, 0.25)
+        )
+        self.quantile_calculated_values.append(
+            numpy.quantile(rating_list, 0.5)
+        )
 
-    def get_students_by_quantile(self) -> RatingType:
+    def get_students_by_quartile(self) -> RatingType:
         output_students: RatingType = {}
 
         for student in self.rating:
-            if self.rating[student] <= self.quantile_calculated_value:
+            if self.quantile_calculated_values[0] <= self.rating[student] <= \
+                    self.quantile_calculated_values[1]:
                 output_students[student] = self.rating[student]
 
         return output_students
