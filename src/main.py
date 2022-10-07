@@ -4,7 +4,6 @@ import sys
 
 from CalcRating import CalcRating
 from QuantileRating import QuantileRating
-from Types import SecondQuantile
 from YamlDataReader import YamlDataReader
 
 
@@ -26,8 +25,8 @@ def main():
     rating = CalcRating(students).calc()
     print("Rating: ", rating)
 
-    quantile_rating = QuantileRating(rating, SecondQuantile). \
-        get_students_by_quantile(ge=True)
+    quantile_rating = QuantileRating(rating). \
+        get_students_by_quartile()
     print("Second quantile students rating: ", quantile_rating)
 
 
