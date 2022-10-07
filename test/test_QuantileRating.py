@@ -32,8 +32,8 @@ class TestQuantileRating:
         assert isinstance(success_init_object, QuantileRating)
 
     def test_calc_quantiles(self,
-                           input_data:
-                           tuple[RatingType, dict[float, float]]) -> None:
+                            input_data:
+                            tuple[RatingType, dict[float, float]]) -> None:
         quantile_rating = QuantileRating(input_data[0])
         assert pytest.approx(quantile_rating.quantile_calculated_values[0],
                              abs=0.001) == input_data[1][FirstQuantile]
